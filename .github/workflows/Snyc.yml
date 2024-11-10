@@ -37,10 +37,10 @@ jobs:
           LOCAL_COMMIT=$(git rev-parse HEAD)
           if [ "$UPSTREAM_COMMIT" != "$LOCAL_COMMIT" ]; then
             echo "Upstream has new commits. Syncing required."
-            echo "::set-output name=needs_sync::true"
+            echo "needs_sync=true" >> $GITHUB_ENV  # 使用环境文件设置变量
           else
             echo "No updates in upstream. Skipping sync."
-            echo "::set-output name=needs_sync::false"
+            echo "needs_sync=false" >> $GITHUB_ENV  # 使用环境文件设置变量
           fi
 
       # Step 4: Sync with upstream if updates are found
