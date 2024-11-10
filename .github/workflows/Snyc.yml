@@ -45,7 +45,7 @@ jobs:
 
       # Step 4: Sync with upstream if updates are found
       - name: Sync with upstream
-        if: steps.check_update.outputs.needs_sync == 'true'
+        if: ${{ env.needs_sync == 'true' }}  # 通过环境变量进行条件判断
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
           upstream_sync_repo: ${{ env.UPSTREAM_REPO }}
